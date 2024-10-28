@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suicide Rate Visualization</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .chart-container { width: 800px; height: 400px; margin: 0 auto; }
+    .axis-label { font-size: 14px; }
+    .controls { margin-bottom: 20px; }
+    .controls label { margin-right: 10px; }
+    .stats { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Suicide Rates Visualization by Country, Field, and Time Range</h1>
+  
+  <div class="controls">
+    <label for="country">Select or Search Country:</label>
+    <input list="countryList" id="country" placeholder="Type to search..." />
+    <datalist id="countryList"></datalist>
+    
+    <label>
+      <input type="checkbox" id="allCountries" /> Show Statistics for All Countries
+    </label>
+
+    <label for="field">Select Field:</label>
+    <select id="field">
+      <option value="BothSexes">Both Sexes</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <label for="startYear">Start Year:</label>
+    <input type="number" id="startYear" min="2000" max="2023" placeholder="e.g., 2019" />
+
+    <label for="endYear">End Year:</label>
+    <input type="number" id="endYear" min="2000" max="2023" placeholder="e.g., 2021" />
+    
+    <label for="chartType">Chart Type:</label>
+    <select id="chartType">
+      <option value="line">Line Chart</option>
+      <option value="bar">Bar Chart</option>
+    </select>
+
+    <button id="updateChart">Update Chart</button>
+  </div>
+
+  <div class="chart-container" id="suicideChart"></div>
+  
+  <div class="stats">
+    <h3>Statistics</h3>
+    <p id="average">Average: N/A</p>
+    <p id="min">Minimum: N/A</p>
+    <p id="max">Maximum: N/A</p>
+    <p id="stdDev">Standard Deviation: N/A</p>
+  </div>
+
+  <script src="js/d3chart.js"></script>
+</body>
+</html>

@@ -14,7 +14,6 @@ exports.getSuicideRates = async (req, res) => {
     if (year) {
       fields = `SuicideRate_BothSexes_RatePer100k_${year} SuicideRate_Male_RatePer100k_${year} SuicideRate_Female_RatePer100k_${year}`;
     }
-
     const rates = await SuicideRate.find(query).select(fields);
     res.json(rates);
   } catch (error) {
@@ -56,6 +55,16 @@ exports.getMetrics = async (req, res) => {
       min: min === Infinity ? null : min,
       max: max === -Infinity ? null : max
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Controller to fetch unique list of countries
+exports.getCountries = async (req, res) => {
+  try {
+    const countries = await SuicideRate.distinct("country"); // Get unique countries
+    res.json(countries);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
